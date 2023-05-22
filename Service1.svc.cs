@@ -32,7 +32,7 @@ namespace WcfService1
             return logic.GetIncident(_searchName, _searchValue);
 
         }
-
+        //
         public List<Incident> GetMultipleRecord()
         {
             try
