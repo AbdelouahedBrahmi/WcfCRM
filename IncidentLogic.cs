@@ -89,6 +89,25 @@ namespace WcfService1
             }
             return null;
         }
+        public List<CustomerAccount> GetCustomerAccounts()
+        {
+            string[] columns = new string[] { "name" };
+            EntityCollection allAccounts = crmDataConnection.GetMultipleRecords("account", columns);
+            if (allAccounts!=null && allAccounts.Entities!=null && allAccounts.Entities.Count > 0)
+            {
+                List<CustomerAccount> accounts = new List<CustomerAccount>();
+                foreach(var account in allAccounts.Entities)
+                {
+                    CustomerAccount accountAccount = new CustomerAccount()
+                    {
+                        Name = account.GetAttributeValue<string>("name")
+                    };
+                    accounts.Add(accountAccount);
+                }
+                return accounts;
+            }
+            return null;
+        }
 
         public Incident GetIncident(string _searchName, string _searchValue)
         {
@@ -128,10 +147,15 @@ namespace WcfService1
         }
         public Incident GetIncidentRecord(Guid recordId)
         {
-           
-            Entity incidentEntity = crmDataConnection.GetEntityById(recordId, "incident", new string[] { "incidentid", "title", "ticketnumber", "prioritycode", "caseorigincode", "customerid", "statuscode", "createdon" }); 
-            Entity customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<EntityReference>("customerid").Id, "account",
-                 new string[] { "accountid", "name", "telephone1", "websiteurl", "address1_line1", "address1_line2", "address1_postalcode", "address1_postalcode", "address1_city", "address1_country" });
+            string[] columns = new string[] { "accountid", "name", "telephone1", "websiteurl", "address1_line1", "address1_line2", "address1_postalcode", "address1_postalcode", "address1_city", "address1_country" };
+            Entity incidentEntity = crmDataConnection.GetEntityById(recordId, "incident", new string[] { "incidentid", "title", "ticketnumber", "prioritycode", "caseorigincode", "customerid", "statuscode", "createdon" });
+            Entity customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<EntityReference>("customerid").Id, "account", columns);
+            if (customerEntity == null)
+            {
+                customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "contact", new string[] { "parentcustomerid" });
+                customerEntity = crmDataConnection.GetEntityById(customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentcustomerid").Id, "account", columns);
+
+            }
             CustomerAccount customer = new CustomerAccount();
             if (customerEntity != null)
             {
@@ -169,7 +193,7 @@ namespace WcfService1
             return crmDataConnection.DeleteEntity("incident", recordId);
         }
 
-        public Guid InsertIncident(Incident incident, CustomerAccount customer)
+        public Guid InsertIncident(Incident incident)
         {
 
             try
@@ -178,12 +202,13 @@ namespace WcfService1
 
                 incidentEntity.Id = incident.IncidentId;
                 incidentEntity["title"] = incident.Title;
-                Entity recordCustomer = crmDataConnection.GetEntity("account", "name", customer.Name, new string[] { "accountid" });
+                Entity recordCustomer = crmDataConnection.GetEntity("account", "name", incident.Customer.Name, new string[] { "accountid" });
+                
                 if (recordCustomer != null) incidentEntity["customerid"] = new EntityReference("account", recordCustomer.Id);
-                else if (recordCustomer == null){ 
-                    MessageBox.Show("veuillez saisir un compte valide!"); 
+                //else if (recordCustomer == null){ 
+                //    MessageBox.Show("veuillez saisir un compte valide!"); 
                     
-                }
+                //}
                 ;
                 // incidentEntity["ticketnumber"] = incident.TicketNumber;
                 // incidentEntity["prioritycode"] = incident.Priority;

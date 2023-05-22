@@ -17,9 +17,9 @@ namespace WcfService1
         {
             return crmData.getAttributesInformations();
         }
-        public Guid InsertIncident(Incident incident, CustomerAccount customer)
+        public Guid InsertIncident(Incident incident)
         {
-            return logic.InsertIncident(incident, customer);
+            return logic.InsertIncident(incident);
         }
 
         public bool DeleteIncident (Guid recordId)
@@ -53,6 +53,11 @@ namespace WcfService1
         public Incident GetIncident(Guid recordId)
         {
             return logic.GetIncidentRecord(recordId);
+        }
+
+        public List<CustomerAccount> GetCustomerAccounts()
+        {
+            return logic.GetCustomerAccounts();
         }
     }
     }

@@ -125,6 +125,23 @@ namespace WcfService1
 
         }
 
+        public void UpdateEntity(Entity entity)
+        {
+            CrmServiceClient svc = ConnectionToCRM();
+            try
+            {
+               svc.Update(entity);  
+
+            }
+
+            // Catch any service fault exceptions that Microsoft Dynamics CRM throws.
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public Entity GetEntity(string _entityName, string _attributeName, string _attributeValue, string[] _columns)
         {
             string message = string.Empty;

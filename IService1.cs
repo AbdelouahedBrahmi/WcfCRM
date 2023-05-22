@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Protocols.WSTrust;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -26,10 +27,13 @@ namespace WcfService1
         Incident GetIncidentBySearchAttribute(string _searchName, string _searchValue);
 
         [OperationContract]
-        Guid InsertIncident(Incident incident, CustomerAccount customers);
+        Guid InsertIncident(Incident incident);
 
         [OperationContract]
         bool DeleteIncident(Guid recordId);
+
+        [OperationContract]
+        List<CustomerAccount> GetCustomerAccounts();
 
 
 
@@ -43,7 +47,7 @@ namespace WcfService1
     {
         
 
-        //[DataMember(IsRequired = false)]
+        [DataMember(IsRequired = false)]
         public Guid IncidentId { get; set; }
         [DataMember(IsRequired = false)]
         public string Title { get; set; }
@@ -89,7 +93,7 @@ namespace WcfService1
         {
             
         }
-        //[DataMember(IsRequired = false)]
+        [DataMember(IsRequired = false)]
         public Guid CustomerAccountID { get; set; }
         [DataMember(IsRequired = false)]
         public string Name { get; set; }
