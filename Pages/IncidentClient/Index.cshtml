@@ -1,0 +1,71 @@
+﻿@page
+@model IncidentCrud.Pages.IncidentClient.IndexModel
+@{
+    ViewData["Title"] = "Incidents";
+}
+
+<div class="text-center">
+    <h1 class="display-1">List of Incidents</h1>
+    <div><a class="btn btn-primary btn-light" href="/IncidentClient/Create"> + Add New</a></div>
+    
+    <div class="container">
+
+        <div class="row height d-flex justify-content-center align-items-center">
+
+            <div class="col-md-6">
+
+                <div class="form">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" placeholder="Search anything...">
+                    <span class="left-pan"><i class="fa fa-microphone"></i></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <table class="table" id="datatable">
+        <thead>
+            <tr>
+            <th>Title </th>
+            <th>Ticket Number </th>
+            <th>Priority </th>
+            <th>Origine </th>
+            <th>Customer </th>
+            <th>Status </th>
+            <th>Creation Date </th>
+            </tr>  
+        </thead>
+        <tbody>
+            @{
+                var incidents = Model.incidents;
+                if (incidents.Length > 0)
+                {
+                    for (int i = 0; i < incidents.Length; i++)
+                    {
+                        
+                        <tr>
+                            <td>@incidents[i].Title </td>
+                            <td>@incidents[i].TicketNumber </td>
+                            <td>@incidents[i].Priority </td>
+                            <td>@incidents[i].Origine </td>
+                            <td>@incidents[i].Customer.Name </td>
+                            <td>@incidents[i].Status </td>
+                            <td>@incidents[i].DateCreation</td>
+                            <td>
+                            <a class="btn btn-primary btn-info" href="/IncidentClient/Edit?id=@incidents[i].IncidentId">details</a>
+                            <a class="btn btn-primary btn-danger" href="/IncidentClient/Delete?id=@incidents[i].IncidentId">delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            }
+
+        </tbody>
+    </table>
+
+
+
+</div>

@@ -1,0 +1,40 @@
+﻿@page
+@model IncidentCrud.Pages.IncidentClient.EditModel
+@{
+}
+
+<div class="text-center">
+    <h3 class="display-3">List of Incidents</h3>
+    <form method="post" style="padding:50px;">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Title</label>
+            <div class="col-sm-6">
+                <input type="text" class="form form-control" name="title" value="@Model.incident.Title"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Ticket Number</label>
+            <div class="col-sm-6">
+                <input type="text" class="form form-control" name="ticket Number" value="@Model.incident.TicketNumber" disabled />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Account</label>
+            <div class="col-sm-6">
+                <input type="text" class="form form-control" name="account" value="@Model.incident.Customer.Name" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-3 d-grid" >
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-3 d-grid">
+                <button type="submit" class="btn btn-warning" href="/IncidentClient">Cancel</button>
+            </div>
+        </div>
+
+
+
+    </form>
+   
+</div>
