@@ -43,7 +43,7 @@ namespace WcfService1
     {
         
 
-        [DataMember(IsRequired = false)]
+        //[DataMember(IsRequired = false)]
         public Guid IncidentId { get; set; }
         [DataMember(IsRequired = false)]
         public string Title { get; set; }
@@ -89,7 +89,7 @@ namespace WcfService1
         {
             
         }
-        [DataMember(IsRequired = false)]
+        //[DataMember(IsRequired = false)]
         public Guid CustomerAccountID { get; set; }
         [DataMember(IsRequired = false)]
         public string Name { get; set; }

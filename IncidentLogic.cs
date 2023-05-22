@@ -47,8 +47,9 @@ namespace WcfService1
                         customerEntity = crmDataConnection.GetEntityById(entity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "account", columns);
                        if (customerEntity == null) 
                         {
-                            customerEntity = crmDataConnection.GetEntityById(entity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "aaduser", new string[] { "id" });
-                            customerEntity = crmDataConnection.GetEntityById(customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("id").Id, "account", columns);
+                            customerEntity = crmDataConnection.GetEntityById(entity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "contact", new string[] { "parentcustomerid" });
+                            record = customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentcustomerid").Id;
+                            customerEntity = crmDataConnection.GetEntityById(customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentcustomerid").Id, "account", columns);
 
                         }
                         if (customerEntity != null) 
