@@ -1,0 +1,288 @@
+Microsoft.Xrm.Tooling.Connector.CrmServiceClient Error: 2 : ************ CommunicationException - RetrieveAllEntities : Execute (RetrieveAllEntities) request to CRM from IOrganizationService |=> La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'.
+Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'.
+Stack Trace	: Server stack trace: 
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   à System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   à Microsoft.Xrm.Sdk.IOrganizationService.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.<>c__DisplayClass40_0.<ExecuteCore>b__0()
+   à Microsoft.Xrm.Sdk.WebServiceClient.WebProxyClient`1.ExecuteAction[TResult](Func`1 action)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.ExecuteCore(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.CrmCommand_Execute(OrganizationRequest req, String errorStringCheck)
+======================================================================================================================
+Inner Exception Level 1	: 
+Source	: System
+Method	: Read
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: Impossible de lire les données de la connexion de transport : Une connexion existante a dû être fermée par l’hôte distant.
+Stack Trace	: à System.Net.GZipWrapperStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   à System.ServiceModel.Channels.PreReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+======================================================================================================================
+Inner Exception Level 2	: 
+Source	: System
+Method	: Receive
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: Une connexion existante a dû être fermée par l’hôte distant
+Stack Trace	: à System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   à System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+======================================================================================================================
+
+Microsoft.Xrm.Tooling.Connector.CrmServiceClient Error: 2 : [TerminalFailure] Failed to Execute Command - RetrieveAllEntities : RequestID=b7216d5c-b5fe-413b-bae8-1f5c12dbd393 : Execute (RetrieveAllEntities) request to CRM from IOrganizationService duration=00:05:38.4853680 ExceptionMessage = La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'.
+Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'.
+Stack Trace	: Server stack trace: 
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   à System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   à Microsoft.Xrm.Sdk.IOrganizationService.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.<>c__DisplayClass40_0.<ExecuteCore>b__0()
+   à Microsoft.Xrm.Sdk.WebServiceClient.WebProxyClient`1.ExecuteAction[TResult](Func`1 action)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.ExecuteCore(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.CrmCommand_Execute(OrganizationRequest req, String errorStringCheck)
+======================================================================================================================
+Inner Exception Level 1	: 
+Source	: System
+Method	: Read
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: Impossible de lire les données de la connexion de transport : Une connexion existante a dû être fermée par l’hôte distant.
+Stack Trace	: à System.Net.GZipWrapperStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   à System.ServiceModel.Channels.PreReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+======================================================================================================================
+Inner Exception Level 2	: 
+Source	: System
+Method	: Receive
+Date	: 15/05/2023
+Time	: 00:02:38
+Error	: Une connexion existante a dû être fermée par l’hôte distant
+Stack Trace	: à System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   à System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+======================================================================================================================
+
+CrmSvcUtil Error: 2 : Exiting program with exit code 2 due to exception : System.ServiceModel.CommunicationException: La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'. ---> System.IO.IOException: Impossible de lire les données de la connexion de transport : Une connexion existante a dû être fermée par l’hôte distant. ---> System.Net.Sockets.SocketException: Une connexion existante a dû être fermée par l’hôte distant
+   à System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   à System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Net.GZipWrapperStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   à System.ServiceModel.Channels.PreReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- Fin de la trace de la pile d'exception interne ---
+
+Server stack trace: 
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.Execute(OrganizationRequest request)
+   à Microsoft.Crm.Services.Utility.MetadataProviderQueryService.RetrieveEntities(IOrganizationService service)
+   à Microsoft.Crm.Services.Utility.SdkMetadataProviderService.LoadMetadata(IServiceProvider service)
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Run()
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Main(String[] args)
+CrmSvcUtil Error: 2 : ===== DETAIL ======
+CrmSvcUtil Error: 2 : Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 00:02:38
+Time	: 15/05/2023
+Error	: La connexion de socket a été abandonnée. Ceci peut être causé par une erreur lors du traitement de votre message, par le dépassement du délai d'attente de réception par l'hôte distant ou par un problème de ressource réseau sous-jacent. Le délai d'attente de socket local était '10675199.02:48:05.4775807'.
+Stack Trace	: Server stack trace: 
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.Execute(OrganizationRequest request)
+   à Microsoft.Crm.Services.Utility.MetadataProviderQueryService.RetrieveEntities(IOrganizationService service)
+   à Microsoft.Crm.Services.Utility.SdkMetadataProviderService.LoadMetadata(IServiceProvider service)
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Run()
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Main(String[] args)
+======================================================================================================================
+Inner Exception Level 1	: 
+Source	: System
+Method	: Read
+Date	: 00:02:38
+Time	: 15/05/2023
+Error	: Impossible de lire les données de la connexion de transport : Une connexion existante a dû être fermée par l’hôte distant.
+Stack Trace	: à System.Net.GZipWrapperStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   à System.ServiceModel.Channels.PreReadStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+======================================================================================================================
+Inner Exception Level 2	: 
+Source	: System
+Method	: Receive
+Date	: 00:02:38
+Time	: 15/05/2023
+Error	: Une connexion existante a dû être fermée par l’hôte distant
+Stack Trace	: à System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   à System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+======================================================================================================================
+
+Microsoft.Xrm.Tooling.Connector.CrmServiceClient Error: 2 : ************ InvalidOperationException - RetrieveAllEntities : Execute (RetrieveAllEntities) request to CRM from IOrganizationService |=> Les délais d'attente ne sont pas pris en charge sur ce flux.
+Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 15/05/2023
+Time	: 00:27:11
+Error	: Les délais d'attente ne sont pas pris en charge sur ce flux.
+Stack Trace	: Server stack trace: 
+   à System.IO.Stream.get_ReadTimeout()
+   à System.ServiceModel.Channels.HttpChannelUtilities.CreateResponseWebException(WebException webException, HttpWebResponse response, HttpAbortReason abortReason)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   à System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   à Microsoft.Xrm.Sdk.IOrganizationService.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.<>c__DisplayClass40_0.<ExecuteCore>b__0()
+   à Microsoft.Xrm.Sdk.WebServiceClient.WebProxyClient`1.ExecuteAction[TResult](Func`1 action)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.ExecuteCore(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.CrmCommand_Execute(OrganizationRequest req, String errorStringCheck)
+======================================================================================================================
+
+Microsoft.Xrm.Tooling.Connector.CrmServiceClient Error: 2 : [TerminalFailure] Failed to Execute Command - RetrieveAllEntities : RequestID=ac225bbc-6674-4943-b3c1-5e35611c4eb6 : Execute (RetrieveAllEntities) request to CRM from IOrganizationService duration=00:20:42.2760801 ExceptionMessage = Les délais d'attente ne sont pas pris en charge sur ce flux.
+Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 15/05/2023
+Time	: 00:27:11
+Error	: Les délais d'attente ne sont pas pris en charge sur ce flux.
+Stack Trace	: Server stack trace: 
+   à System.IO.Stream.get_ReadTimeout()
+   à System.ServiceModel.Channels.HttpChannelUtilities.CreateResponseWebException(WebException webException, HttpWebResponse response, HttpAbortReason abortReason)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   à System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   à Microsoft.Xrm.Sdk.IOrganizationService.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.<>c__DisplayClass40_0.<ExecuteCore>b__0()
+   à Microsoft.Xrm.Sdk.WebServiceClient.WebProxyClient`1.ExecuteAction[TResult](Func`1 action)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.ExecuteCore(OrganizationRequest request)
+   à Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient.Execute(OrganizationRequest request)
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.CrmCommand_Execute(OrganizationRequest req, String errorStringCheck)
+======================================================================================================================
+
+CrmSvcUtil Error: 2 : Exiting program with exit code 2 due to exception : System.InvalidOperationException: Les délais d'attente ne sont pas pris en charge sur ce flux.
+
+Server stack trace: 
+   à System.IO.Stream.get_ReadTimeout()
+   à System.ServiceModel.Channels.HttpChannelUtilities.CreateResponseWebException(WebException webException, HttpWebResponse response, HttpAbortReason abortReason)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.Execute(OrganizationRequest request)
+   à Microsoft.Crm.Services.Utility.MetadataProviderQueryService.RetrieveEntities(IOrganizationService service)
+   à Microsoft.Crm.Services.Utility.SdkMetadataProviderService.LoadMetadata(IServiceProvider service)
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Run()
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Main(String[] args)
+CrmSvcUtil Error: 2 : ===== DETAIL ======
+CrmSvcUtil Error: 2 : Source	: mscorlib
+Method	: HandleReturnMessage
+Date	: 00:27:11
+Time	: 15/05/2023
+Error	: Les délais d'attente ne sont pas pris en charge sur ce flux.
+Stack Trace	: Server stack trace: 
+   à System.IO.Stream.get_ReadTimeout()
+   à System.ServiceModel.Channels.HttpChannelUtilities.CreateResponseWebException(WebException webException, HttpWebResponse response, HttpAbortReason abortReason)
+   à System.ServiceModel.Channels.HttpInput.WebResponseHttpInput.WebResponseInputStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   à System.ServiceModel.Channels.MessageEncoder.BufferMessageStream(Stream stream, BufferManager bufferManager, Int32 maxBufferSize)
+   à System.ServiceModel.Channels.MessageEncoder.ReadMessage(Stream stream, BufferManager bufferManager, Int32 maxBufferSize, String contentType)
+   à System.ServiceModel.Channels.HttpInput.ReadChunkedBufferedMessage(Stream inputStream)
+   à System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   à System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   à System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   à System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   à System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   à Microsoft.Xrm.Tooling.Connector.CrmServiceClient.Execute(OrganizationRequest request)
+   à Microsoft.Crm.Services.Utility.MetadataProviderQueryService.RetrieveEntities(IOrganizationService service)
+   à Microsoft.Crm.Services.Utility.SdkMetadataProviderService.LoadMetadata(IServiceProvider service)
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Run()
+   à Microsoft.Crm.Services.Utility.CrmSvcUtil.Main(String[] args)
+======================================================================================================================
+
