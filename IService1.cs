@@ -35,6 +35,9 @@ namespace WcfService1
         [OperationContract]
         List<CustomerAccount> GetCustomerAccounts();
 
+        [OperationContract]
+        bool updateIncident(Incident incident);
+
 
 
         // TODO: ajoutez vos opérations de service ici
@@ -49,7 +52,8 @@ namespace WcfService1
 
         [DataMember(IsRequired = false)]
         public Guid IncidentId { get; set; }
-        [DataMember(IsRequired = false)]
+        [DataMember]
+        [Required]
         public string Title { get; set; }
         [DataMember(IsRequired = false)]
         public string TicketNumber { get; set; }

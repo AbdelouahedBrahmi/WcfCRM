@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Metadata;
 using System.Linq;
 using System.ServiceModel;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Xrm.Sdk;
@@ -147,41 +148,48 @@ namespace WcfService1
         }
         public Incident GetIncidentRecord(Guid recordId)
         {
-            string[] columns = new string[] { "accountid", "name", "telephone1", "websiteurl", "address1_line1", "address1_line2", "address1_postalcode", "address1_postalcode", "address1_city", "address1_country" };
-            Entity incidentEntity = crmDataConnection.GetEntityById(recordId, "incident", new string[] { "incidentid", "title", "ticketnumber", "prioritycode", "caseorigincode", "customerid", "statuscode", "createdon" });
-            Entity customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<EntityReference>("customerid").Id, "account", columns);
-            if (customerEntity == null)
+            try
             {
-                customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "contact", new string[] { "parentcustomerid" });
-                customerEntity = crmDataConnection.GetEntityById(customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentcustomerid").Id, "account", columns);
-
-            }
-            CustomerAccount customer = new CustomerAccount();
-            if (customerEntity != null)
-            {
-                customer = new CustomerAccount()
+                string[] columns = new string[] { "accountid", "name", "telephone1", "websiteurl", "address1_line1", "address1_line2", "address1_postalcode", "address1_postalcode", "address1_city", "address1_country" };
+                Entity incidentEntity = crmDataConnection.GetEntityById(recordId, "incident", new string[] { "incidentid", "title", "ticketnumber", "prioritycode", "caseorigincode", "customerid", "statuscode", "createdon" });
+                Entity customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<EntityReference>("customerid").Id, "account", columns);
+                if (customerEntity == null)
                 {
-                    CustomerAccountID = customerEntity.Id,
-                    Name = customerEntity.GetAttributeValue<string>("name"),
-                    Telephone = customerEntity.GetAttributeValue<string>("telephone1"),
-                    SiteWeb = customerEntity.GetAttributeValue<string>("websiteurl"),
-                    Street1 = customerEntity.GetAttributeValue<string>("address1_line1"),
-                    Street2 = customerEntity.GetAttributeValue<string>("address1_line2"),
-                    PostalCode = Convert.ToInt32(customerEntity.GetAttributeValue<String>("address1_postalcode")),
-                    City = customerEntity.GetAttributeValue<string>("address1_city"),
-                    Country = customerEntity.GetAttributeValue<string>("address1_country"),
+                    customerEntity = crmDataConnection.GetEntityById(incidentEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("customerid").Id, "contact", new string[] { "parentcustomerid" });
+                    customerEntity = crmDataConnection.GetEntityById(customerEntity.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("parentcustomerid").Id, "account", columns);
 
-                };
+                }
+                CustomerAccount customer = new CustomerAccount();
+                if (customerEntity != null)
+                {
+                    customer = new CustomerAccount()
+                    {
+                        CustomerAccountID = customerEntity.Id,
+                        Name = customerEntity.GetAttributeValue<string>("name"),
+                        Telephone = customerEntity.GetAttributeValue<string>("telephone1"),
+                        SiteWeb = customerEntity.GetAttributeValue<string>("websiteurl"),
+                        Street1 = customerEntity.GetAttributeValue<string>("address1_line1"),
+                        Street2 = customerEntity.GetAttributeValue<string>("address1_line2"),
+                        PostalCode = Convert.ToInt32(customerEntity.GetAttributeValue<String>("address1_postalcode")),
+                        City = customerEntity.GetAttributeValue<string>("address1_city"),
+                        Country = customerEntity.GetAttributeValue<string>("address1_country"),
+
+                    };
+                }
+                Incident incident = new Incident(incidentEntity.Id,
+                incidentEntity.Contains("title") ? incidentEntity.GetAttributeValue<string>("title") : string.Empty,
+                incidentEntity.Contains("ticketnumber") ? incidentEntity.GetAttributeValue<string>("ticketnumber") : string.Empty,
+                incidentEntity.Contains("prioritycode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("prioritycode").Value) : 0,
+                incidentEntity.Contains("caseorigincode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("caseorigincode").Value) : 0,
+                customer,
+                incidentEntity.Contains("statecode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("statecode").Value) : 0,
+                incidentEntity.Contains("createdon") ? incidentEntity.GetAttributeValue<DateTime>("createdon") : DateTime.MinValue);
+                return incident;
             }
-            Incident incident = new Incident(incidentEntity.Id,
-            incidentEntity.Contains("title") ? incidentEntity.GetAttributeValue<string>("title") : string.Empty,
-            incidentEntity.Contains("ticketnumber") ? incidentEntity.GetAttributeValue<string>("ticketnumber") : string.Empty,
-            incidentEntity.Contains("prioritycode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("prioritycode").Value) : 0,
-            incidentEntity.Contains("caseorigincode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("caseorigincode").Value) : 0,
-            customer,
-            incidentEntity.Contains("statecode") ? Convert.ToInt32(incidentEntity.GetAttributeValue<OptionSetValue>("statecode").Value) : 0,
-            incidentEntity.Contains("createdon") ? incidentEntity.GetAttributeValue<DateTime>("createdon") : DateTime.MinValue);
-            return incident;
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public string DeleteIncidentByAttribute(string _searchName, string _searchValue)
@@ -228,6 +236,33 @@ namespace WcfService1
                 ex.Message.ToString();
                 return Guid.Empty;
             }
+
+            
+        }
+
+        public bool UpdateIncident(Incident incident)
+        {
+
+            try
+            {
+                if (incident != null)
+                {
+                    string[] _columns = new string[] { "title", "customerid" };
+                    Entity enIncident = crmDataConnection.GetEntityById(incident.IncidentId, "incident", _columns);
+                    enIncident["title"] = incident.Title;
+                    Entity recordCustomer = crmDataConnection.GetEntity("account", "name", incident.Customer.Name, new string[] { "accountid" });
+                    if (recordCustomer != null) enIncident["customerid"] = new EntityReference("account", recordCustomer.Id);
+
+                    crmDataConnection.UpdateEntity(enIncident);
+
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return false;
 
             
         }

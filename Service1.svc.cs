@@ -59,5 +59,10 @@ namespace WcfService1
         {
             return logic.GetCustomerAccounts();
         }
+
+        public bool updateIncident(Incident incident)
+        {
+            return logic.UpdateIncident(incident);
+        }
     }
     }
