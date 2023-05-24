@@ -52,8 +52,7 @@ namespace WcfService1
 
         [DataMember(IsRequired = false)]
         public Guid IncidentId { get; set; }
-        [DataMember]
-        [Required]
+        [DataMember(IsRequired = false)]
         public string Title { get; set; }
         [DataMember(IsRequired = false)]
         public string TicketNumber { get; set; }
