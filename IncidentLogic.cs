@@ -266,5 +266,19 @@ namespace WcfService1
 
             
         }
+
+        public bool ExecuteRequest(Incident incident)
+        {
+            string[] _columns = new string[] { "title", "ticketnumber", "prioritycode", "caseorigincode", "customerid", "statuscode", "createdon" };
+            string[] _values = new string[]
+            {
+                incident.Title, incident.TicketNumber, incident.Priority.ToString(), incident.Origine.ToString(),
+                new Guid().ToString(), incident.Status.ToString(), incident.DateCreation.ToString()
+            };
+
+            crmDataConnection.ExecuteRequest("incident", _columns, _values);
+
+            return false;
+        }
     }
 }

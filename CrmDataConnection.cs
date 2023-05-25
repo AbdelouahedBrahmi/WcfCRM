@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Activities.Expressions;
+using System.Activities.Statements;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.ServiceModel;
+using System.Windows.Forms;
 using System.Windows.Markup;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -236,6 +241,78 @@ namespace WcfService1
             return true;
         }
 
+
+        public bool ExecuteRequest(string entityName, string[] columns, string[] values)
+        {
+            CrmServiceClient svc = ConnectionToCRM();
+
+            if (svc.IsReady)
+            {
+                try
+                {
+                    List<AttributeMetadata> attributes = svc.GetAllAttributesForEntity(entityName);
+                   
+                    var attr = attributes.Where(a=>a.AttributeType.Value.ToString() == "Customer")
+                       // .Select(a => new { a.LogicalName,  a.AttributeType.Value })
+                        
+                        .Distinct().ToList();
+                    var joinAttrCol = (from at in attr
+                               join c in columns on at.LogicalName equals c
+                               //orderby at.LogicalName 
+                               select at
+                               ).ToArray();
+
+                    //List<string> cols = columns.ToList();
+                    //cols.Sort();
+
+                    Entity entity = new Entity(entityName);
+                    
+                    for (int i = 0; i < joinAttrCol.Length; i++)
+                    {
+
+                        var type = ""; //joinAttrCol[i].Value.ToString();
+
+                        switch (type)
+                        {
+                            case "String" :
+                                entity[type] = values[i];
+                                break;
+                            case "integer" :
+                                entity[type] = values[i];
+                                break;
+
+                            case "Picklist":
+                                entity[type] = new OptionSetValue(Convert.ToInt16(values[i]));
+                                break;
+
+                            case "DateTime":
+                                break;
+
+                            default:
+                                entity[type] = new EntityReference();
+                                break;
+
+
+                        }
+
+
+                    }
+
+                    CreateRequest request = new CreateRequest
+                    {
+                        RequestName = entityName,
+                        Target = entity
+                    };
+                    var response = svc.Execute(request);
+                    return true;
+                }
+            catch 
+                {
+                    throw new Exception(); 
+                }
+            }
+            return false;
+        }
 
         public string getAttributesInformations()
         {

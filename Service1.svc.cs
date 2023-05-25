@@ -64,5 +64,10 @@ namespace WcfService1
         {
             return logic.UpdateIncident(incident);
         }
+
+        public bool ExeecuteRequest(Incident incident)
+        {
+           return logic.ExecuteRequest(incident);
+        }
     }
     }

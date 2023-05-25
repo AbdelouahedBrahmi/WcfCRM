@@ -38,6 +38,9 @@ namespace WcfService1
         [OperationContract]
         bool updateIncident(Incident incident);
 
+        [OperationContract]
+        bool ExeecuteRequest(Incident incident);
+
 
 
         // TODO: ajoutez vos opérations de service ici
@@ -48,7 +51,6 @@ namespace WcfService1
     [DataContract]
     public class Incident 
     {
-        
 
         [DataMember(IsRequired = false)]
         public Guid IncidentId { get; set; }
